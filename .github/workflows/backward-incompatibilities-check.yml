@@ -24,10 +24,9 @@ jobs:
             const fs = require('fs');
             const path = require('path');
             
-            // Hardcoded list of required reviewers
-            const REQUIRED_REVIEWERS = ['afroz0429', 'boblodget'];
+            // list of required reviewers
+            const REQUIRED_REVIEWERS = ['normj', 'boblodgett'];
             
-            // Function to find JSON files directly in .DevConfigs
             function findDevConfigFiles() {
               const devConfigPath = 'generator/.DevConfigs';
               try {
@@ -48,7 +47,6 @@ jobs:
               }
             }
             
-            // Function to check if JSON contains backwardIncompatibilitiesToIgnore
             function hasBackwardIncompatibilities(filePath) {
               try {
                 const content = fs.readFileSync(filePath, 'utf8');
@@ -81,7 +79,7 @@ jobs:
             console.log(`Found ${devConfigFiles.length} DevConfig files in PR branch`);
             
             if (devConfigFiles.length === 0) {
-              console.log('No DevConfig files found, skipping backward incompatibility check');
+              console.log('No DevConfig files found, skipping backwardIncompatibilitiesToIgnore check');
               return;
             }
             
