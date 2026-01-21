@@ -6,7 +6,7 @@ on:
     types: [synchronize, opened, reopened, edited, review_requested, review_request_removed]
 
 jobs:
-  check-backward-incompatibilities-reviewers:
+  check-backwardIncompatibilitiesToIgnore-reviewers:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout PR branch (sparse - only .DevConfigs)
@@ -17,7 +17,7 @@ jobs:
             generator/.DevConfigs
           sparse-checkout-cone-mode: false
 
-      - name: Check backward incompatibilities and reviewers
+      - name: Check backwardIncompatibilitiesToIgnore and reviewers
         uses: actions/github-script@v7.0.1
         with:
           script: |
@@ -127,11 +127,11 @@ jobs:
             if (!hasRequiredReviewer) {
               const fileList = filesWithIncompatibilities.join('\n- ');
               const requiredReviewersList = REQUIRED_REVIEWERS.join(', ');
-              core.setFailed(`Backward incompatibilities detected in the following files:\n- ${fileList}\n\nThis PR requires at least one of the following reviewers to be assigned: ${requiredReviewersList}\n\nCurrently assigned reviewers: ${assignedUsernames.join(', ') || 'none'}`);
+              core.setFailed(`backwardIncompatibilitiesToIgnore in the following files:\n- ${fileList}\n\nThis PR requires at least one of the following reviewers to be assigned: ${requiredReviewersList}\n\nCurrently assigned reviewers: ${assignedUsernames.join(', ') || 'none'}`);
             } else {
               const approvedRequiredReviewers = REQUIRED_REVIEWERS.filter(reviewer => 
                 assignedUsernames.includes(reviewer)
               );
-              console.log('Required reviewers are assigned, backward incompatibility check passed');
+              console.log('Required reviewers are assigned, backwardIncompatibilitiesToIgnore check passed');
               console.log('Assigned required reviewers:', approvedRequiredReviewers.join(', '));
             }
