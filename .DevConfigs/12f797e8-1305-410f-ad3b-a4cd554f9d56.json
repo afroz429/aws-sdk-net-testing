@@ -1,0 +1,9 @@
+{
+  "core": {
+    "type": "patch",
+    "changeLogMessages": [
+      "Updated backwards compatibility configuration - 2026-01-29"
+    ],
+    "updateMinimum": true
+  }
+}
