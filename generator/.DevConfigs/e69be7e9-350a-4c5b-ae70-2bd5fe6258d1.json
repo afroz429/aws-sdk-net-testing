@@ -1,0 +1,12 @@
+{
+  "core": {
+    "type": "patch",
+    "backwardIncompatibilitiesToIgnore": [
+      "Amazon.Runtime.Internal.IServiceMetadata/MethodAbstractMethodAdded"
+    ],
+    "changeLogMessages": [
+      "Updated backwards compatibility configuration - 2026-01-29"
+    ],
+    "updateMinimum": true
+  }
+}
